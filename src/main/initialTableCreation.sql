@@ -28,20 +28,19 @@ CREATE TABLE  questions (
 
 CREATE TABLE answers (
     question_id INT REFERENCES questions (id),
-    answer_id INT,
-    answer_content VARCHAR(50),
-    PRIMARY KEY (question_id, answer_id)
+    answer_id SERIAL PRIMARY KEY,
+    answer_content VARCHAR(50)
 );
 
 CREATE TABLE  answered_questions (
+    id SERIAL PRIMARY KEY,
     question_id INT REFERENCES questions (id) ON UPDATE CASCADE ON DELETE CASCADE,
     user_id INT REFERENCES users (id) ON UPDATE CASCADE,
-    answer_id INT,
-    PRIMARY KEY (question_id, user_id)
+    answer_id INT REFERENCES answers (answer_id)
 );
-
+-------------------------------------------------------
 CREATE TABLE  personal_images (
     image varchar(64),
     user_id INT REFERENCES users (id) ON UPDATE CASCADE,
-    PRIMARY KEY (question_id, image)
+    PRIMARY KEY (user_id, image)
 );

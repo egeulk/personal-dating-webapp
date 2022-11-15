@@ -1,17 +1,19 @@
 package com.example.simpledatingservice.entities;
 
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Table(name = "tags")
-public class Tag {
+@Table(name = "questions")
+public class Question {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name="id")
     private long id;
 
-    @Column(name = "tag_name")
-    private String tagName;
+    @OneToMany(mappedBy = "question")
+    private List<Answer> possibleAnswers;
 
     public long getId() {
         return id;
@@ -21,11 +23,4 @@ public class Tag {
         this.id = id;
     }
 
-    public String getTagName() {
-        return tagName;
-    }
-
-    public void setTagName(String tagName) {
-        this.tagName = tagName;
-    }
 }
