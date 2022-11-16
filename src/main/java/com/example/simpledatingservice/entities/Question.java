@@ -1,6 +1,8 @@
 package com.example.simpledatingservice.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -12,7 +14,8 @@ public class Question {
     @Column(name="id")
     private long id;
 
-    @OneToMany(mappedBy = "question")
+    @OneToMany
+    @JoinColumn(name="question_id")
     private List<Answer> possibleAnswers;
 
     public long getId() {
@@ -22,5 +25,14 @@ public class Question {
     public void setId(long id) {
         this.id = id;
     }
+
+    public List<Answer> getPossibleAnswers() {
+        return possibleAnswers;
+    }
+
+    public void setPossibleAnswers(List<Answer> possibleAnswers) {
+        this.possibleAnswers = possibleAnswers;
+    }
+
 
 }

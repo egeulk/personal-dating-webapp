@@ -1,5 +1,7 @@
 package com.example.simpledatingservice.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -19,6 +21,7 @@ public class AnsweredQuestion {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonManagedReference
     private User user;
 
     public long getId() {
@@ -52,5 +55,7 @@ public class AnsweredQuestion {
     public void setUser(User user) {
         this.user = user;
     }
+
+
 }
 

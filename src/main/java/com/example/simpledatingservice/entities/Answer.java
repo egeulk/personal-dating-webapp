@@ -1,22 +1,20 @@
 package com.example.simpledatingservice.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "answers", schema = "public")
+@Table(name = "answers")
 public class Answer {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name="id")
+    @Column(name="answer_id")
     private long answerId;
 
     @Column(name="answer_content")
     private String answerContent;
-
-    @ManyToOne
-    @JoinColumn(name="question_id")
-    private Question question;
 
     public long getAnswerId() {
         return answerId;
@@ -34,11 +32,4 @@ public class Answer {
         this.answerContent = answerContent;
     }
 
-    public Question getQuestion() {
-        return question;
-    }
-
-    public void setQuestion(Question question) {
-        this.question = question;
-    }
 }

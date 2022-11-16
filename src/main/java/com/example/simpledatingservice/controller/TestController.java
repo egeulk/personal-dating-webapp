@@ -1,8 +1,6 @@
 package com.example.simpledatingservice.controller;
 
-import com.example.simpledatingservice.entities.AnsweredQuestion;
-import com.example.simpledatingservice.entities.Tag;
-import com.example.simpledatingservice.entities.User;
+import com.example.simpledatingservice.entities.*;
 import com.example.simpledatingservice.service.AnsweredQuestionService;
 import com.example.simpledatingservice.service.TagService;
 import com.example.simpledatingservice.service.UserService;
@@ -27,28 +25,30 @@ public class TestController {
     @Autowired
     private TagService tagService;
 
-
-
     @GetMapping("/getTags")
     public List<Tag> getAllTags(){
        return  tagService.getTags();
     }
 
-    @GetMapping("/getUser/")
+    @GetMapping("/getUser")
     public User getUserFromId() {
         User user = userService.getUser();
         System.out.println(user.getAnsweredQuestion());
         return user;
     }
 
-
     @GetMapping("/getAnsweredQuestions")
     public List<AnsweredQuestion> getAnsweredQuestions(){
         List<AnsweredQuestion> answeredQ = answeredQuestionService.getAnsweredQuestions();
         System.out.println(answeredQ);
         return answeredQ;
-
     }
+
+    @GetMapping("/getUnanswered/{forId}")
+    public Question showUnasnweredQuestion(){
+        return answeredQuestionService.getUnansweredQuestions();
+    }
+
 
 
 

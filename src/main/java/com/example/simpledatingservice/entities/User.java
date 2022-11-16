@@ -1,42 +1,46 @@
 package com.example.simpledatingservice.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.*;
 
 @Entity
-@Table(name = "users", schema = "dateapp")
+@Table(name = "users")
 public class User {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name="id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private long id;
 
     @Column(name = "name")
     private String name;
 
-    @Column(name="surname")
+    @Column(name = "surname")
     private String surname;
 
     //enumeration could be added for pronouns and genders
     //https://stackoverflow.com/questions/2751733/map-enum-in-jpa-with-fixed-values
 
-    @Column(name="user_pronoun")
+    @Column(name = "user_pronoun")
     private String pronoun;
 
-    @Column(name="user_gender")
+    @Column(name = "user_gender")
     private String gender;
 
     @ManyToMany(fetch = FetchType.EAGER,
-        cascade = CascadeType.REFRESH)
+            cascade = CascadeType.REFRESH)
     @JoinTable(
-            name="users_tags",
-            joinColumns = @JoinColumn(name="user_id"),
-            inverseJoinColumns = @JoinColumn(name="tag_id")
+            name = "users_tags",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id")
     )
     private List<Tag> tags;
 
     @OneToMany(mappedBy = "user")
+    @JsonBackReference
     private List<AnsweredQuestion> answeredQuestion;
 
     public long getId() {
@@ -94,4 +98,5 @@ public class User {
     public void setAnsweredQuestion(List<AnsweredQuestion> answeredQuestion) {
         this.answeredQuestion = answeredQuestion;
     }
+
 }
