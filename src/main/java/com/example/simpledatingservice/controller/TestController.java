@@ -5,6 +5,8 @@ import com.example.simpledatingservice.service.AnsweredQuestionService;
 import com.example.simpledatingservice.service.TagService;
 import com.example.simpledatingservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,9 +34,8 @@ public class TestController {
     }
 
     @GetMapping("/getUser")
-    public User getUserFromId(Principal principal) {
-        UsersLoginPrincipal principalCasted = (UsersLoginPrincipal) principal;
-        return principalCasted.getUserslogin().getUser();
+    public User getUserFromId(@AuthenticationPrincipal UsersLoginPrincipal principal) {
+        return principal.getUserslogin().getUser();
     }
 
     @GetMapping("/getAnsweredQuestions")

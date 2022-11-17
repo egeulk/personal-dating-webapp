@@ -1,17 +1,22 @@
 package com.example.simpledatingservice.entities;
 
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 public class UsersLoginPrincipal implements UserDetails {
     private UsersLogin userslogin;
-    private User user;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+                 return null;
+    }
+
+    public UsersLoginPrincipal(UsersLogin userslogin) {
+        this.userslogin = userslogin;
     }
 
     @Override
@@ -52,11 +57,4 @@ public class UsersLoginPrincipal implements UserDetails {
         this.userslogin = userslogin;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 }

@@ -15,13 +15,12 @@ public class CustomUserDetailService implements UserDetailsService {
     private UserLoginRepository userLoginRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UsersLoginPrincipal loadUserByUsername(String username) throws UsernameNotFoundException {
         UsersLogin usersLogin = userLoginRepository.findByEmail(username);
         if (usersLogin == null) {
             throw new UsernameNotFoundException(username);
         }
-        UsersLoginPrincipal principal = new UsersLoginPrincipal();
-        principal.setUserslogin(usersLogin);
+        UsersLoginPrincipal principal = new UsersLoginPrincipal(usersLogin);
         return principal;
     }
 
