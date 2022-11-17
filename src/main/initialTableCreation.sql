@@ -1,13 +1,21 @@
 CREATE TYPE pronouns AS ENUM ('he/him', 'she/her', 'other');
 CREATE TYPE genders AS ENUM ('women', 'men', 'non-binary');
 
+
+
 CREATE TABLE  users (
-    id SERIAL PRIMARY KEY,
+    id INT REFERENCES users_login (user_id),
     name VARCHAR(50),
     surname VARCHAR(50),
     --location POINT,
     user_pronoun pronouns,
     user_gender genders
+);
+
+CREATE TABLE users_login (
+    user_id INT REFERENCES users (id) PRIMARY KEY,
+    user_email VARCHAR(60),
+    user_password VARCHAR(60)
 );
 
 CREATE TABLE  tags (
@@ -36,6 +44,7 @@ CREATE TABLE  answered_questions (
     id SERIAL PRIMARY KEY,
     question_id INT REFERENCES questions (id) ON UPDATE CASCADE ON DELETE CASCADE,
     user_id INT REFERENCES users (id) ON UPDATE CASCADE,
+    importance INT,
     answer_id INT REFERENCES answers (answer_id)
 );
 -------------------------------------------------------

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -31,10 +32,9 @@ public class TestController {
     }
 
     @GetMapping("/getUser")
-    public User getUserFromId() {
-        User user = userService.getUser();
-        System.out.println(user.getAnsweredQuestion());
-        return user;
+    public User getUserFromId(Principal principal) {
+        UsersLoginPrincipal principalCasted = (UsersLoginPrincipal) principal;
+        return principalCasted.getUserslogin().getUser();
     }
 
     @GetMapping("/getAnsweredQuestions")
