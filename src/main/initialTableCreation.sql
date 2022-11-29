@@ -4,7 +4,7 @@ CREATE TYPE genders AS ENUM ('women', 'men', 'non-binary');
 
 
 CREATE TABLE  users (
-    id INT REFERENCES users_login (user_id),
+    id INT REFERENCES users_login (user_id) PRIMARY KEY,
     name VARCHAR(50),
     surname VARCHAR(50),
     --location POINT,
@@ -13,9 +13,9 @@ CREATE TABLE  users (
 );
 
 CREATE TABLE users_login (
-    user_id INT REFERENCES users (id) PRIMARY KEY,
+    user_id SERIAL PRIMARY KEY,
     user_email VARCHAR(60),
-    user_password VARCHAR(60)
+    user_password VARCHAR(90)
 );
 
 CREATE TABLE  tags (

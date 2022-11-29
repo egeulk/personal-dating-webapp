@@ -1,4 +1,16 @@
--write Entities corresponding to the table definition
+-succesfully do CRUD operations to update passwords, delete accounts etc.
+
+-fix some ambiguous naming cases (sometimes using "s" sometimes not etc.)
+
+-add @Transactional keyword
+
+-Make users tags and other various spaces lazy fetching and use DTOs for user facing part
+
+-write Junit tests
+
+-add more
+
+LONGER TERM
 
 -create simple pages, /login /landing /profile
 

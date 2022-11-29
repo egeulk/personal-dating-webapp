@@ -11,6 +11,7 @@ import java.util.Collection;
 public class UsersLogin {
 
     @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private Long id;
 
@@ -20,9 +21,18 @@ public class UsersLogin {
     @Column(name = "user_password")
     private String password;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "user_id")
     private User user;
+
+    public UsersLogin(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
+
+    public UsersLogin() {
+
+    }
 
     public Long getId() {
         return id;
@@ -55,4 +65,5 @@ public class UsersLogin {
     public void setUser(User user) {
         this.user = user;
     }
+
 }

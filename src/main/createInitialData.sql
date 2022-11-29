@@ -27,10 +27,4 @@ VALUES (0, 1, 'ketchup');
 INSERT INTO answered_questions(id, question_id, user_id, answer_id, importance)
 VALUES (0, 0, 0, 1,3);
 
-CREATE TABLE users_login (
-                             user_id INT REFERENCES users (id) PRIMARY KEY,
-                             user_email VARCHAR(60),
-                             user_password VARCHAR(120)
-);
-
-INSERT INTO users_login(user_id, user_email, user_password) VALUES (0, 'testing@test.com', '{bcrypt}$2a$12$0tS/hSgTzzDePo8jn4dxsudF..BtiQagebtXmdAM6ppoyc1DOQFky')
+INSERT INTO users_login(user_id, user_email, user_password) VALUES (0, 'testing@test.com', '{bcrypt}$2a$12$0tS/hSgTzzDePo8jn4dxsudF..BtiQagebtXmdAM6ppoyc1DOQFky');
