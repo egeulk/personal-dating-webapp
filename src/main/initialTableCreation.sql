@@ -4,18 +4,18 @@ CREATE TYPE genders AS ENUM ('women', 'men', 'non-binary');
 
 
 CREATE TABLE  users (
-    id INT REFERENCES users_login (user_id) PRIMARY KEY,
-    name VARCHAR(50),
+    id SERIAL REFERENCES users_login (user_id) PRIMARY KEY,
+    name VARCHAR(50) ,
     surname VARCHAR(50),
     --location POINT,
-    user_pronoun pronouns,
-    user_gender genders
+    user_pronoun int,
+    user_gender int
 );
 
 CREATE TABLE users_login (
     user_id SERIAL PRIMARY KEY,
-    user_email VARCHAR(60),
-    user_password VARCHAR(90)
+    user_email VARCHAR(60) NOT NULL UNIQUE,
+    user_password VARCHAR(90) NOT NULL
 );
 
 CREATE TABLE  tags (

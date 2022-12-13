@@ -8,7 +8,7 @@ INSERT INTO tags(id, tag_name)
 VALUES (2,'dancing');
 
 INSERT INTO users(id, name, surname, user_pronoun, user_gender)
-VALUES (0, 'ilkIsim', 'Surname', 'he/him', 'men');
+VALUES (0, 'ilkIsim', 'Surname', 0, 0);
 
 
 INSERT INTO users_tags(user_id, tag_id)

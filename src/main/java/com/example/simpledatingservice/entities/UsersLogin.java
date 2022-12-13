@@ -21,8 +21,7 @@ public class UsersLogin {
     @Column(name = "user_password")
     private String password;
 
-    @OneToOne(cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "user_id")
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "usersLogin")
     private User user;
 
     public UsersLogin(String email, String password) {
@@ -41,6 +40,7 @@ public class UsersLogin {
     public void setId(Long id) {
         this.id = id;
     }
+
 
     public String getEmail() {
         return email;

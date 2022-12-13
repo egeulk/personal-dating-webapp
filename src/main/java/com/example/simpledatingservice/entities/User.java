@@ -1,18 +1,25 @@
 package com.example.simpledatingservice.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import javax.persistence.*;
 import java.util.*;
 
 @Entity
 @Table(name = "users")
 public class User {
+    public User() {
+    }
+
+
+    @OneToOne
+    @JoinColumn(name = "id")
+    @MapsId
+    @JsonBackReference
+    private UsersLogin usersLogin;
 
     @Id
     @Column(name = "id")
-    private long id;
+    private Long id;
 
     @Column(name = "name")
     private String name;
@@ -20,14 +27,36 @@ public class User {
     @Column(name = "surname")
     private String surname;
 
-    //enumeration could be added for pronouns and genders
-    //https://stackoverflow.com/questions/2751733/map-enum-in-jpa-with-fixed-values
-
     @Column(name = "user_pronoun")
-    private String pronoun;
+    @Enumerated(EnumType.ORDINAL)
+    private Gender Orientation;
 
     @Column(name = "user_gender")
-    private String gender;
+    @Enumerated(EnumType.ORDINAL)
+    private Gender gender;
+
+    public enum Gender {
+        GENDER_MEN("Men"),
+        GENDER_WOMEN("Women"),
+        GENDER_OTHER("Other");
+
+        private final String text;
+
+        /**
+         * @param text
+         */
+        Gender(final String text) {
+            this.text = text;
+        }
+
+        /* (non-Javadoc)
+         * @see java.lang.Enum#toString()
+         */
+        @Override
+        public String toString() {
+            return text;
+        }
+    }
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
@@ -65,19 +94,11 @@ public class User {
         this.surname = surname;
     }
 
-    public String getPronoun() {
-        return pronoun;
-    }
-
-    public void setPronoun(String pronoun) {
-        this.pronoun = pronoun;
-    }
-
     public String getGender() {
-        return gender;
+        return gender.toString();
     }
 
-    public void setGender(String gender) {
+    public void setGender(Gender gender) {
         this.gender = gender;
     }
 
@@ -97,4 +118,23 @@ public class User {
         this.answeredQuestion = answeredQuestion;
     }
 
+    public UsersLogin getUsersLogin() {
+        return usersLogin;
+    }
+
+    public void setUsersLogin(UsersLogin usersLogin) {
+        this.usersLogin = usersLogin;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getOrientation() {
+        return Orientation.toString();
+    }
+
+    public void setOrientation(Gender orientation) {
+        Orientation = orientation;
+    }
 }

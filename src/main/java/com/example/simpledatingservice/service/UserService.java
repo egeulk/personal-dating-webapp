@@ -5,6 +5,8 @@ import com.example.simpledatingservice.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @Service
 public class UserService {
 
@@ -14,11 +16,11 @@ public class UserService {
     public UserService(UserRepository userRepository){
         this.userRepository = userRepository;
     }
-
-    public User getUser(){
-        Long temp = new Long(0);
-        return userRepository.findById(temp).get();}
-
+    @Transactional
+    public User getUser(long userId) {
+        return userRepository.findById(userId).get();
+     }
+    @Transactional
     public void createNewUser() {
         User user = new User();
         userRepository.save(user);

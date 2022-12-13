@@ -40,7 +40,10 @@ public class TestController {
 
     @GetMapping("/getUser")
     public User getUserFromId(@AuthenticationPrincipal UsersLoginPrincipal principal) {
-        return principal.getUserslogin().getUser();
+        //org.hibernate.LazyInitializationException
+        //the answered questions can't be initalized, get it from transactional method
+        User user = userService.getUser(principal.getUserslogin().getId());
+        return user;
     }
 
     @GetMapping("/getAnsweredQuestions")
@@ -51,10 +54,9 @@ public class TestController {
     }
 
     //add ExclusionForThis
-    @PostMapping("/createNewUser")
+    @PostMapping("/sign-up")
     public void createAUser(@RequestBody UserCredentialDTO userCredentials){
         customUserDetailService.createNewUser(userCredentials);
-        userService.createNewUser();
     }
 
     @PostMapping("/updatePassword")
