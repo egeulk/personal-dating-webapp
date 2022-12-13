@@ -1,8 +1,8 @@
--succesfully do CRUD operations to update passwords, delete accounts etc.
+X-succesfully do CRUD operations to update passwords, delete accounts etc.
 
 -fix some ambiguous naming cases (sometimes using "s" sometimes not etc.)
 
--add @Transactional keyword
+X-add @Transactional keyword
 
 -Make users tags and other various spaces lazy fetching and use DTOs for user facing part
 

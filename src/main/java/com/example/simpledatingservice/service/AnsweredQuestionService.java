@@ -28,8 +28,9 @@ public class AnsweredQuestionService {
         return result;
     }
 
-    public Question getUnansweredQuestions(){
-        return answeredQuestionsRepository.findNonAnsweredQuestions();
+    public List<Question> getUnansweredQuestions(){
+        Long id = new Long(0);
+        return answeredQuestionsRepository.findNonAnsweredQuestions(id);
     }
 
 

@@ -48,6 +48,13 @@ public class CustomUserDetailService implements UserDetailsService {
         userLoginRepository.save(usersLogin);
     }
 
+    @Transactional
+    public void updatePassword(UserCredentialDTO userCredentialDTO, long id){
+        String encodedPassword = passwordEncoder.encode(userCredentialDTO.getPassword());
+        UsersLogin usersLogin = new UsersLogin(id, userCredentialDTO.getEmail(), encodedPassword);
+        userLoginRepository.save(usersLogin);
+    }
+
     @Autowired
     public void setUserLoginRepository(UserLoginRepository userLoginRepository) {
         this.userLoginRepository = userLoginRepository;

@@ -1,5 +1,6 @@
 package com.example.simpledatingservice.service;
 
+import com.example.simpledatingservice.DTO.UserDTO;
 import com.example.simpledatingservice.entities.User;
 import com.example.simpledatingservice.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,5 +25,20 @@ public class UserService {
     public void createNewUser() {
         User user = new User();
         userRepository.save(user);
+    }
+
+    public void updateUser(UserDTO userDTO, long id) {
+        User user = dtoToObject(userDTO);
+        user.setId(id);
+        userRepository.save(user);
+    }
+
+    public User dtoToObject(UserDTO userDTO){
+        User user = new User();
+        user.setName(userDTO.getName());
+        user.setSurname(userDTO.getSurname());
+        user.setGenderAsString(userDTO.getGender());
+        user.setGenderAsString(userDTO.getPronoun());
+        return user;
     }
 }

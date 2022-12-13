@@ -1,6 +1,9 @@
 package com.example.simpledatingservice.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "tags")

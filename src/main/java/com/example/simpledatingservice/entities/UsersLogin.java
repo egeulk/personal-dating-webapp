@@ -29,6 +29,12 @@ public class UsersLogin {
         this.password = password;
     }
 
+    public UsersLogin(Long id, String email, String password) {
+        this.id = id;
+        this.email = email;
+        this.password = password;
+    }
+
     public UsersLogin() {
 
     }

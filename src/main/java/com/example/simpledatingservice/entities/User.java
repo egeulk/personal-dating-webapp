@@ -29,7 +29,7 @@ public class User {
 
     @Column(name = "user_pronoun")
     @Enumerated(EnumType.ORDINAL)
-    private Gender Orientation;
+    private Gender orientation;
 
     @Column(name = "user_gender")
     @Enumerated(EnumType.ORDINAL)
@@ -102,6 +102,10 @@ public class User {
         this.gender = gender;
     }
 
+    public void setGenderAsString(String gender) {
+        this.gender = Gender.valueOf(gender);
+    }
+
     public List<Tag> getTags() {
         return tags;
     }
@@ -131,10 +135,14 @@ public class User {
     }
 
     public String getOrientation() {
-        return Orientation.toString();
+        return orientation.toString();
     }
 
     public void setOrientation(Gender orientation) {
-        Orientation = orientation;
+        this.orientation = orientation;
+    }
+
+    public void setOrientationAsString(String gender) {
+        this.orientation = Gender.valueOf(gender);
     }
 }

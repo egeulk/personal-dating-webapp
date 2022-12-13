@@ -24,6 +24,8 @@ public class AnsweredQuestion {
     @JsonManagedReference
     private User user;
 
+    @Column
+    private short importance;
     public long getId() {
         return id;
     }
@@ -56,6 +58,12 @@ public class AnsweredQuestion {
         this.user = user;
     }
 
+    public short getImportance() {
+        return importance;
+    }
 
+    public void setImportance(short importance) {
+        this.importance = importance;
+    }
 }
 

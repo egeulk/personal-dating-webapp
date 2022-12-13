@@ -26,4 +26,11 @@ public class TagService {
         iterable.forEach(result::add);
         return result;
     }
+
+    @Transactional
+    public List<Tag> getNonSelectedTags(){
+        Long id = new Long(0);
+        return tagRepository.findByIdNotIn(id);
+    }
+
 }

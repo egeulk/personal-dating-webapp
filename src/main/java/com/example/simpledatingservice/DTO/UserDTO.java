@@ -15,10 +15,6 @@ public class UserDTO {
 
     private String gender;
 
-    private List<Tag> tags;
-
-    private List<AnsweredQuestion> answeredQuestion;
-
     public String getName() {
         return name;
     }
@@ -51,19 +47,4 @@ public class UserDTO {
         this.gender = gender;
     }
 
-    public List<Tag> getTags() {
-        return tags;
-    }
-
-    public void setTags(List<Tag> tags) {
-        this.tags = tags;
-    }
-
-    public List<AnsweredQuestion> getAnsweredQuestion() {
-        return answeredQuestion;
-    }
-
-    public void setAnsweredQuestion(List<AnsweredQuestion> answeredQuestion) {
-        this.answeredQuestion = answeredQuestion;
-    }
 }
