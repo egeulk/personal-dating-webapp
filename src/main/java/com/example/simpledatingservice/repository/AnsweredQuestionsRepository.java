@@ -12,4 +12,11 @@ import java.util.List;
 public interface AnsweredQuestionsRepository extends CrudRepository<AnsweredQuestion, Long> {
     @Query(value = "SELECT q FROM Question q, AnsweredQuestion aq WHERE q.id NOT in (SELECT aq.question.id FROM AnsweredQuestion aq WHERE aq.user.id=:userId) ")
     List<Question> findNonAnsweredQuestions(@Param("userId") Long userId);
+
+    List<AnsweredQuestion> findByUser_Id(Long id);
+    long deleteByQuestion_IdAndUser_Id(long questionId, Long userId);
+
+
+
+
 }

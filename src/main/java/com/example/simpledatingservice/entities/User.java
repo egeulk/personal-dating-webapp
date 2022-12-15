@@ -1,5 +1,6 @@
 package com.example.simpledatingservice.entities;
 
+import com.example.simpledatingservice.service.AnsweredQuestionService;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import javax.persistence.*;
 import java.util.*;
@@ -114,6 +115,10 @@ public class User {
         this.tags = tags;
     }
 
+    public void removeTag(Tag tag) {
+        this.tags.remove(tag);
+    }
+
     public List<AnsweredQuestion> getAnsweredQuestion() {
         return answeredQuestion;
     }
@@ -122,6 +127,9 @@ public class User {
         this.answeredQuestion = answeredQuestion;
     }
 
+    public void removeAnsweredQuestion(AnsweredQuestion answeredQuestion) {
+        this.answeredQuestion.remove(answeredQuestion);
+    }
     public UsersLogin getUsersLogin() {
         return usersLogin;
     }
@@ -145,4 +153,5 @@ public class User {
     public void setOrientationAsString(String gender) {
         this.orientation = Gender.valueOf(gender);
     }
+
 }

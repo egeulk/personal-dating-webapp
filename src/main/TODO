@@ -1,20 +1,14 @@
-X-succesfully do CRUD operations to update passwords, delete accounts etc.
+-new methods should be tested
 
--fix some ambiguous naming cases (sometimes using "s" sometimes not etc.)
+- in answered_question make it so that if a user tries to answer a question twice (question_id + user_id) update it. Might change the pk to composite
 
-X-add @Transactional keyword
-
--Make users tags and other various spaces lazy fetching and use DTOs for user facing part
-
--write Junit tests
-
--add more
+- implement searching by tag and show a user info (in user info screen, have compability score)
 
 LONGER TERM
 
 -create simple pages, /login /landing /profile
 
--using spring security and only make /landing and /login accesible without login, get user information from db
+[X]-using spring security and only make /landing and /login accesible without login, get user information from db
 
 -make so /profile gets the user entity, populates the form and allows user to update it
 

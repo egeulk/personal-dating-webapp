@@ -3,10 +3,7 @@ package com.example.simpledatingservice.controller;
 import com.example.simpledatingservice.DTO.*;
 import com.example.simpledatingservice.entities.*;
 import com.example.simpledatingservice.repository.UserLoginRepository;
-import com.example.simpledatingservice.service.AnsweredQuestionService;
-import com.example.simpledatingservice.service.CustomUserDetailService;
-import com.example.simpledatingservice.service.TagService;
-import com.example.simpledatingservice.service.UserService;
+import com.example.simpledatingservice.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -27,6 +24,9 @@ public class TestController {
     private CustomUserDetailService customUserDetailService;
     @Autowired
     private TagService tagService;
+
+    @Autowired
+    private QuestionService questionService;
 
     @GetMapping("/getTags")
     public List<Tag> getAllTags(){
@@ -79,24 +79,33 @@ public class TestController {
 
     @PostMapping("/user/tags")
     public void updateTags(@AuthenticationPrincipal UsersLoginPrincipal principal, @RequestBody TagsDTO tagsDTO){
-        //todo
+        long loggedInId = principal.getUserslogin().getId();
+        userService.updateUsersTags(loggedInId, tagsDTO.getSelectedTags());
     }
 
     @GetMapping("/user/questions")
     public QuestionsDTO getQuestions(@AuthenticationPrincipal UsersLoginPrincipal principal) {
-        //todo
-        return null;
+        QuestionsDTO questionsDTO = new QuestionsDTO();
+        Long id = principal.getUserslogin().getId();
+        List<AnsweredQuestion> answered = answeredQuestionService.getAnsweredQuestions(id);
+        List<Question> unanswered = answeredQuestionService.getUnansweredQuestions(id);
+        questionsDTO.setAnsweredQuestions(answered);
+        questionsDTO.setNonAnsweredQuestions(unanswered);
+        return questionsDTO;
     }
 
     @GetMapping("/user/questions/{question_id}")
-    public Question getQuestion(@PathVariable("question_id") long questionId){
-        //todo
-        return null;
+    public QuestionDTO getQuestion(@PathVariable("question_id") long questionId){
+        Question question = questionService.getQuestionById(questionId);
+        QuestionDTO questionDTO = new QuestionDTO();
+        questionDTO.setContent(questionDTO.getContent());
+        questionDTO.setPossibleAnswers(questionDTO.getPossibleAnswers());
+        return questionDTO;
     }
 
     @PostMapping("/user/questions/{question_id}")
-    public void answerQuestion(@PathVariable("question_id") long questionId, @RequestBody AnsweredQuestion answeredQuestion) {
-        //todo
+    public void answerQuestion(@PathVariable("question_id") long questionId, @RequestBody AnswerQuestionDTO answeredQuestion, @AuthenticationPrincipal UsersLoginPrincipal principal) {
+        answeredQuestionService.answerQuestion(answeredQuestion, questionId, principal.getUserslogin().getId());
     }
 
     @GetMapping("/user/search/{tagId}")

@@ -14,6 +14,9 @@ public class Question {
     @Column(name="id")
     private long id;
 
+    @Column(name = "question_content")
+    private String content;
+
     @OneToMany
     @JoinColumn(name="question_id")
     private List<Answer> possibleAnswers;
@@ -34,5 +37,11 @@ public class Question {
         this.possibleAnswers = possibleAnswers;
     }
 
+    public String getContent() {
+        return content;
+    }
 
+    public void setContent(String content) {
+        this.content = content;
+    }
 }
