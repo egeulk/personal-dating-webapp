@@ -14,6 +14,9 @@ public interface AnsweredQuestionsRepository extends CrudRepository<AnsweredQues
     @Query(value = "SELECT q FROM Question q, AnsweredQuestion aq WHERE q.id NOT in (SELECT aq.question.id FROM AnsweredQuestion aq WHERE aq.user.id=:userId) ")
     List<Question> findNonAnsweredQuestions(@Param("userId") Long userId);
 
+    @Query(value = "SELECT aq.answer FROM AnsweredQuestion aq WHERE aq.user.id = :userId AND aq.question.id=:questionId")
+    Answer findAnswerByUserAndQuestionId(@Param("userId") Long userId, @Param("questionId") Long questionId);
+
     List<AnsweredQuestion> findByUser_Id(Long id);
 
     AnsweredQuestion findByQuestion_IdAndUser_Id(long questionId, Long answerId);

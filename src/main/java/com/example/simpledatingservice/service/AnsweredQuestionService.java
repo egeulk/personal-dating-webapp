@@ -1,6 +1,7 @@
 package com.example.simpledatingservice.service;
 
 import com.example.simpledatingservice.DTO.AnswerQuestionDTO;
+import com.example.simpledatingservice.entities.Answer;
 import com.example.simpledatingservice.entities.AnsweredQuestion;
 import com.example.simpledatingservice.entities.Question;
 import com.example.simpledatingservice.entities.User;
@@ -30,6 +31,10 @@ public class AnsweredQuestionService {
 
     public List<Question> getUnansweredQuestions(Long id){
         return answeredQuestionsRepository.findNonAnsweredQuestions(id);
+    }
+
+    public Answer getUsersAnswer(Long userId, Long questionId){
+        return   answeredQuestionsRepository.findAnswerByUserAndQuestionId(userId, questionId);
     }
 
     public void answerQuestion(AnswerQuestionDTO answerDTO, Long userId) {

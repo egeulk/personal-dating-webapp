@@ -95,11 +95,14 @@ public class TestController {
     }
 
     @GetMapping("/user/questions/{question_id}")
-    public QuestionDTO getQuestion(@PathVariable("question_id") long questionId){
+    public QuestionDTO getQuestion(@PathVariable("question_id") long questionId, @AuthenticationPrincipal UsersLoginPrincipal principal){
+        long userId = principal.getUserslogin().getId();
+        Answer answer = answeredQuestionService.getUsersAnswer(userId, questionId);
         Question question = questionService.getQuestionById(questionId);
         QuestionDTO questionDTO = new QuestionDTO();
-        questionDTO.setContent(questionDTO.getContent());
-        questionDTO.setPossibleAnswers(questionDTO.getPossibleAnswers());
+        questionDTO.setContent(question.getContent());
+        questionDTO.setPossibleAnswers(question.getPossibleAnswers());
+        questionDTO.setChosenAnswer(answer);
         return questionDTO;
     }
 

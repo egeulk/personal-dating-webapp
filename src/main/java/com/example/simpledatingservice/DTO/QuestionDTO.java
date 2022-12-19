@@ -11,6 +11,8 @@ public class QuestionDTO {
 
     private List<Answer> possibleAnswers;
 
+    private Answer chosenAnswer;
+
     public String getContent() {
         return content;
     }
@@ -25,5 +27,13 @@ public class QuestionDTO {
 
     public void setPossibleAnswers(List<Answer> possibleAnswers) {
         this.possibleAnswers = possibleAnswers;
+    }
+
+    public Answer getChosenAnswer() {
+        return chosenAnswer;
+    }
+
+    public void setChosenAnswer(Answer chosenAnswer) {
+        this.chosenAnswer = chosenAnswer;
     }
 }
