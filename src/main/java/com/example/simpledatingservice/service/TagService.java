@@ -1,9 +1,7 @@
 package com.example.simpledatingservice.service;
 
 import com.example.simpledatingservice.entities.Tag;
-import com.example.simpledatingservice.entities.User;
 import com.example.simpledatingservice.repository.TagRepository;
-import com.example.simpledatingservice.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,8 +26,7 @@ public class TagService {
     }
 
     @Transactional
-    public List<Tag> getNonSelectedTags(){
-        Long id = new Long(0);
+    public List<Tag> getNonSelectedTags(Long id){
         return tagRepository.findByIdNotIn(id);
     }
 

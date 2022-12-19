@@ -63,7 +63,6 @@ public class TestController {
         customUserDetailService.updatePassword(userCredentials, principal.getUserslogin().getId());
     }
 
-    //Get 5 random results that has this tag
     @GetMapping("/user/{userid}/tags")
     public List<Tag> getTags(@PathVariable(name = "userid") long id){
         return userService.getUser(id).getTags();
@@ -73,7 +72,7 @@ public class TestController {
     public TagsDTO getTags(@AuthenticationPrincipal UsersLoginPrincipal principal){
         TagsDTO dto = new TagsDTO();
         dto.setSelectedTags(userService.getUser(principal.getUserslogin().getId()).getTags());
-        dto.setNonSelectedTags(tagService.getNonSelectedTags());
+        dto.setNonSelectedTags(tagService.getNonSelectedTags(principal.getUserslogin().getId()));
         return dto;
     }
 
