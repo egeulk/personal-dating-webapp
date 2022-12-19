@@ -6,6 +6,7 @@ import com.example.simpledatingservice.repository.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,7 @@ import java.util.List;
 public class QuestionService {
 
     private QuestionRepository questionRepository;
-
+    @Transactional
     public Question getQuestionById(Long id){
         Question question = questionRepository.findById(id).get();
         QuestionDTO questionDTO = new QuestionDTO();
@@ -21,7 +22,7 @@ public class QuestionService {
         questionDTO.setPossibleAnswers(question.getPossibleAnswers());
         return question;
     }
-
+    @Transactional
     public List<Question> getAllQuestions() {
         List<Question> result = new ArrayList<Question>();
         Iterable<Question> iterable = questionRepository.findAll();

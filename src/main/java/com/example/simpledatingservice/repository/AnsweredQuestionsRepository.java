@@ -8,10 +8,10 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface AnsweredQuestionsRepository extends CrudRepository<AnsweredQuestion, Long> {
-    @Query(value = "SELECT q FROM Question q, AnsweredQuestion aq WHERE q.id NOT in (SELECT aq.question.id FROM AnsweredQuestion aq WHERE aq.user.id=:userId) ")
+    @Query(value = "SELECT q FROM Question q, AnsweredQuestion aq JOIN aq.user u " +
+            "WHERE q.id NOT IN   (SELECT q.id FROM q, aq JOIN aq.user u WHERE u.id = :userId)")
     List<Question> findNonAnsweredQuestions(@Param("userId") Long userId);
 
     @Query(value = "SELECT aq.answer FROM AnsweredQuestion aq WHERE aq.user.id = :userId AND aq.question.id=:questionId")
@@ -21,20 +21,6 @@ public interface AnsweredQuestionsRepository extends CrudRepository<AnsweredQues
 
     AnsweredQuestion findByQuestion_IdAndUser_Id(long questionId, Long answerId);
 
-
-
     long deleteByQuestion_IdAndUser_Id(long questionId, Long userId);
-
-    @Transactional
-    @Modifying
-    @Query("update AnsweredQuestion a set a.answer = ?1, a.importance = ?2 where a.user.id = ?3 and a.question.id = ?4")
-    int updateAnswerAndImportanceByUserAndQuestion(Answer answer, short importance, long user, long question);
-
-
-
-
-
-
-
 
 }

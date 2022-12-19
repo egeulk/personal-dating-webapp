@@ -34,7 +34,7 @@ public class UserService {
         user.setTags(tags);
         userRepository.save(user);
     }
-
+    @Transactional
     public void updateUser(UserDTO userDTO, long id) {
         User user = userRepository.findById(id).get();
         user = updateUserFromDTO(userDTO, user);
