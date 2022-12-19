@@ -105,7 +105,8 @@ public class TestController {
 
     @PostMapping("/user/questions/{question_id}")
     public void answerQuestion(@PathVariable("question_id") long questionId, @RequestBody AnswerQuestionDTO answeredQuestion, @AuthenticationPrincipal UsersLoginPrincipal principal) {
-        answeredQuestionService.answerQuestion(answeredQuestion, questionId, principal.getUserslogin().getId());
+        answeredQuestion.setQuestionId(questionId);
+        answeredQuestionService.answerQuestion(answeredQuestion, principal.getUserslogin().getId());
     }
 
     @GetMapping("/user/search/{tagId}")
