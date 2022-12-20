@@ -4,21 +4,21 @@ A simple dating webapp similiar to likes of Tinder/Okcupid, developed to prove m
 
 Not only that but also serves as my personal testing ground for technologies I want to learn.
 
-Currently only REST is available for testing, Postman file available on root folder.
-
+Currently only REST is available for testing, Postman file available on root folder.<br />
+<br />
 <h2>Available features so far</h2>
--Creating users and encoding their passwords with Bcrypt\
--Users being able to specify their genders and which gender they're looking for\
--Users being able to answer questions, easily see which questions they haven't answered and specify how much the answer matters for them (Okcupid feature)\
+-Creating users and encoding their passwords with Bcrypt<br />
+-Users being able to specify their genders and which gender they're looking for<br />
+-Users being able to answer questions, easily see which questions they haven't answered and specify how much the answer matters for them (Okcupid feature)<br />
 -Users being able to tag themselves and see non-chosen tags easily
-
+<br /><br />
 <h2>Will be added very soon</h2>
--Add more attributes and also preferences to a user, such as height, body type, horoscope\
--Searching people based on tags, like old okcupid\
--Calculating a compability score, using answered questions and tags\
--Add simple html pages
-
+-Add more attributes and also preferences to a user, such as height, body type, horoscope<br />
+-Searching people based on tags, like old okcupid<br />
+-Calculating a compability score, using answered questions and tags<br />
+-Add simple html pages<br />
+<br />
 <h3>Not likely to be added soon</h3>
--Location\
--Pictures\
--Angular interface using the already developed REST part, since I'm not a frontend guy
+-Location<br />
+-Pictures<br />
+-Angular interface using the already developed REST part, since I'm not a frontend guy<br />
